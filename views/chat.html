@@ -1,0 +1,47 @@
+{% extends 'layout.html' %} {% block content %}
+<!-- <form id="chat-form" action="/post" method="post" enctype="multipart/form-data">
+  <div class="input-group">
+    <textarea id="chat" name="content" maxlength="140"></textarea>
+  </div>
+  <div class="img-preview">
+    <img
+      id="img-preview"
+      src=""
+      style="display: none"
+      width="250"
+      alt="미리보기"
+    />
+    <input id="img-url" type="hidden" name="url" />
+  </div>
+  <div>
+    <label id="img-label" for="img">사진 업로드</label>
+    <input id="img" type="file" accept="image/*" />
+    <button id="chat-btn" type="submit" class="btn">전송</button>
+  </div>
+</form> -->
+
+<div class="wraaper">
+  <div class="display-container">
+    <ul class="chatting-list">
+      <li class="sent">
+        <span class="prof">
+          <span class="user">panjun</span>
+        </span>
+        <span class="message">hello! nice to meet you~</span>
+      </li>
+      <li class="received">
+        <span class="prof">
+          <span class="user">hansung</span>
+        </span>
+        <span class="message">hi~ my name is hansung!</span>
+      </li>
+    </ul>
+  </div>
+  <div class="input-container">
+    <span>
+      <input type="text" class="chatting-input" />
+      <button class="send-button">send</button>
+    </span>
+  </div>
+</div>
+{% endblock %}

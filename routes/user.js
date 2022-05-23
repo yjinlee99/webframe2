@@ -20,4 +20,16 @@ router.post('/:id/follow', isLoggedIn, async (req, res, next) => {
   }
 });
 
+router.post('/:id/show', isLoggedIn, async (req, res, next) => {
+  try{
+    const user = await User.findOne({ where : { id: req.user.id }});
+    if(user) {
+      await 
+    }
+  }
+});
+
+
+
 module.exports = router;
+

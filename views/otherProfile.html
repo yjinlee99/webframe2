@@ -1,0 +1,22 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="container">
+  <div class="profile-wrap">
+    <div class="profile">
+      {% if user and user.id %}
+      <div class="user-name">{{user.nick + '님의 프로필'}}</div>
+      <div class="half">
+        <div>팔로잉</div>
+        <div class="count following-count">{{followingCount}}</div>
+      </div>
+      <div class="half">
+        <div>팔로워</div>
+        <div class="count follower-count">{{followerCount}}</div>
+      </div>
+      <input id="my-id" type="hidden" value="{{user.id}}" />
+      <a id="chat" href="/chat" class="btn">채팅하기</a>
+      {% endif %}
+    </div>
+    <footer><b>prj-name</b> at Web Framework2 (N)</footer>
+  </div>
+</div>
+{% endblock %}

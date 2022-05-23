@@ -8,12 +8,19 @@ router.use((req, res, next) => {
   res.locals.user = req.user;
   res.locals.followerCount = req.user ? req.user.Followers.length : 0;
   res.locals.followingCount = req.user ? req.user.Followings.length : 0;
-  res.locals.followerIdList = req.user ? req.user.Followings.map(f => f.id) : [];
+  res.locals.followerIdList = req.user
+    ? req.user.Followings.map((f) => f.id)
+    : [];
   next();
 });
 
 router.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile', { title: 'Profile - prj-name' });
+});
+
+// chat 라우터
+router.get('/chat', isLoggedIn, (req, res) => {
+  res.render('chat', { title: 'Chat - prj-name' });
 });
 
 router.get('/join', isNotLoggedIn, (req, res) => {
@@ -50,7 +57,6 @@ router.get('/hashtag', async (req, res, next) => {
     if (hashtag) {
       posts = await hashtag.getPosts({ include: [{ model: User }] });
     }
-
     return res.render('main', {
       title: `${query} | NodeBird`,
       twits: posts,
@@ -58,6 +64,23 @@ router.get('/hashtag', async (req, res, next) => {
   } catch (error) {
     console.error(error);
     return next(error);
+  }
+});
+
+router.get('/otherprofile/:id', isLoggedIn, async (req, res, next) => {
+  try {
+    const user = await User.findOne({ where: { id: req.user.id } });
+    if (user) {
+      res.render('otherProfile', {
+        title: 'prj-name',
+        User: user,
+      });
+    } else {
+      res.status(404).send('no user');
+    }
+  } catch (error) {
+    console.error(error);
+    next(error);
   }
 });
 
